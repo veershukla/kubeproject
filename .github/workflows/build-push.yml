@@ -26,3 +26,15 @@ jobs:
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:${{ github.sha }}
+
+      - name: Update image tag in values.yaml
+        run: |
+          sed -i "s|tag:.*|tag: ${{ github.sha }}|" helm/hello-world/values.yaml
+
+      - name: Commit and push updated values.yaml
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add helm/hello-world/values.yaml
+          git commit -m "ci: update image tag to ${{ github.sha }}"
+          git push
