@@ -1,0 +1,6 @@
+Hello World has been deployed!
+
+To access the app, run:
+  kubectl port-forward svc/{{ .Release.Name }} 3000:{{ .Values.service.port }} -n {{ .Release.Namespace }}
+
+Then open: http://localhost:3000
