@@ -2,7 +2,7 @@ replicaCount: 2
 
 image:
   repository: veshukla/hello-world
-  tag: latest
+  tag: 43784729ce24bbd2dabbe935467a570a9a21876e
   pullPolicy: Always
 
 service:
